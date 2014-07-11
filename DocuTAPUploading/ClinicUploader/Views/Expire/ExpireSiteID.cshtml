@@ -1,0 +1,25 @@
+﻿@model ClinicUploader.Models.ExpireModel
+
+@{
+    ViewBag.Title = "ExpireSiteID";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/ValidateUpload.js"></script>
+<h2>ExpireSiteID</h2>
+@using (Html.BeginForm("ExpireSiteID", "Expire", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <table>
+        <tr>
+            <td>Enter SiteID:</td>
+            <td>
+              @Html.DropDownListFor(model => model.siteid  , (IEnumerable<SelectListItem>) ViewBag.Sites , "--Select--", new {@id="ddlSite"})
+         </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <label class="MessageInfo"  id="MessageInfo">@ViewBag.MessageInfo</label> 
+                <input type="submit" name="ExpireSubmit" id="expirebtnSubmit" value="Expire SiteID"/>
+            </td>
+        </tr>
+    </table> 
+}

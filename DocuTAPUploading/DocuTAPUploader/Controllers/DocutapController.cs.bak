@@ -1,0 +1,164 @@
+﻿using DocuTAPUploading.Models;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
+using System.Net;
+using System.Net.Mail;
+using System.Web.Mvc;
+
+namespace DocuTAPUploading.Controllers
+{
+    public class DocutapController : Controller
+    {
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult DocutapUpload()
+        {
+            ViewBag.Sites =  new SelectList(FlatFileHelper.GetAllSiteId(), "SiteId", "SiteName"); 
+            return View();
+           
+        }
+
+
+        [HttpPost]
+        public ActionResult DocutapUpload(DocutapModel docutapModel)
+        {
+
+            if (docutapModel.docutapfile != null || docutapModel.docutapfile.ContentLength > 0)
+            {
+                var docutapDirectory = Server.MapPath(ConfigurationManager.AppSettings["DocutapDirectory"]);
+                var dir = new DirectoryInfo(string.Format("{0}{1}", docutapDirectory, docutapModel.siteid));
+                 var filename = string.Format("{0}_{1}", docutapModel.siteid, FlatFileHelper.GetDateFormatYYYY_MM_DD_HH_MM_SS(DateTime.Now));
+                
+                // Path.GetFileName(docutapModel.docutapfile.FileName));
+                var filepath = System.IO.Path.Combine(dir.FullName, filename);
+
+                if (!dir.Exists)
+                {
+                    var status = true;
+                    Directory.CreateDirectory(string.Format("{0}{1}", docutapDirectory, docutapModel.siteid));
+                    // for Make a one time clickable link
+                    var downloadableFile = Server.MapPath(ConfigurationManager.AppSettings["DownloadableStatus"]);
+                    if (!System.IO.File.Exists(downloadableFile))
+                    {
+                        var tw = System.IO.File.CreateText(string.Format("{0}{1}.txt", downloadableFile, docutapModel.siteid));
+                        string mappedData = string.Format("{0}, {1}", status, docutapModel.siteid);
+                        tw.WriteLine(mappedData);
+                        tw.Close();
+                    }
+
+                }
+                using (DocutapService.DocutapClient docutapClient = new DocutapService.DocutapClient())
+                {
+                    filepath = docutapClient.DocutapMacro(filepath);
+                }
+                docutapModel.docutapfile.SaveAs(filepath);
+
+                if ((System.IO.File.Exists(filepath)) && (System.IO.File.GetLastAccessTime(filepath).Date.Date == System.DateTime.Now.Date))
+                {
+                    sendEMail(docutapModel.siteid, filename, true);
+                }
+                else
+                {
+                    sendEMail(docutapModel.siteid, filename, false);
+
+                }
+            }
+            return RedirectToAction("DocutapUpload");
+        }
+
+        /// <summary>
+        /// Send Acknowledgement Mail to both
+        /// </summary>
+        /// <param name="siteid"></param>
+        /// <param name="filename"></param>
+        private void sendEMail(string siteid, string filename, bool sucessFailure)
+        {
+            var toMail = FlatFileHelper.GetEmailIdBySiteId(siteid, FlatFileHelper.UserTypes.DocuTap);
+            var frommail = ConfigurationManager.AppSettings["FromMail"];
+            var Msg = new MailMessage();
+
+            // Sender e-mail address.
+            Msg.From = new MailAddress(frommail);
+            // Recipient e-mail address.
+            Msg.To.Add(toMail);
+            // Subject of e-mail
+            Msg.Subject = ConfigurationManager.AppSettings["Subject"];
+            Msg.IsBodyHtml = true;
+
+            var url = new UrlHelper(this.ControllerContext.RequestContext);
+            var portName = (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port);
+            var Domain = string.Format("{0}{1}{2}{3}", Request.Url.Scheme, System.Uri.SchemeDelimiter, Request.Url.Host, portName);
+            var body = "Hi,";
+            if (sucessFailure)
+            {
+
+                body += "<br /><br />Please click the following link to download Excel Sheet";
+                body += string.Format("<br /><a href ={0}{1}>Click here to Download.</a>", Domain, url.Action("Download", "Docutap", new { siteid = siteid, filename = filename }));
+                body += "<br /><br />Thanks";
+            }
+            else
+            {
+                Msg.Subject = ConfigurationManager.AppSettings["SubjectFailure"];
+                body += string.Format("<br/><br> File {0} uploaded for the Site {1} could not be saved.", filename, siteid);
+                body += "<br /><br />Thanks";
+            }
+
+            Msg.Body = body;
+
+            // your remote SMTP server IP.
+            var smtp = new SmtpClient();
+            smtp.Host = ConfigurationManager.AppSettings["SmtpServer"];
+            smtp.EnableSsl = true;
+            smtp.UseDefaultCredentials = true;
+            var NetworkCred = new NetworkCredential(frommail, ConfigurationManager.AppSettings["Password"]);
+            smtp.Credentials = NetworkCred;
+            smtp.Port = Convert.ToInt32(ConfigurationManager.AppSettings["Port"]);
+            smtp.Send(Msg);
+
+        }
+     
+        /// <summary>
+        /// For Downloading the Excel File 
+        /// </summary>
+        /// <param name="siteid"></param>
+        /// <param name="filename"></param>
+        /// <returns></returns>
+        public ActionResult Download(string siteid, string filename)
+        {
+            var status = false;
+            var path = string.Empty;
+            var Domain = string.Empty;
+            var contentType = string.Empty;
+            var tr = new StreamReader(Server.MapPath(string.Format("{0}{1}.txt", ConfigurationManager.AppSettings["DownloadableStatus"], siteid)));
+
+            var data = tr.ReadLine().Split(',');
+            if (data[0].ToString() == "True")
+            {
+
+                path = HttpContext.Server.MapPath(string.Format("~/Content/DocutapUpload/{0}/{1}",siteid, filename));
+                var defaultPort = (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port);
+                Domain = string.Format("{0}{1}{2}{3}", Request.Url.Scheme, System.Uri.SchemeDelimiter, Request.Url.Host, defaultPort);
+                contentType = "application/vnd.ms-excel";
+                //string fullpathfilename = ConfigurationManager.AppSettings["DocutapDirectory"] + siteid + "/" + filename;
+                tr.Close();
+
+                var twText = System.IO.File.CreateText(string.Format("{0}{1}.txt",Server.MapPath(ConfigurationManager.AppSettings["DownloadableStatus"]), siteid));
+                var mappedData = string.Format("{0}, {1}", status, siteid);
+                twText.WriteLine(mappedData);
+                twText.Close();
+
+                return File(path, contentType, filename);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Docutap");
+            }
+        }
+
+    }
+}

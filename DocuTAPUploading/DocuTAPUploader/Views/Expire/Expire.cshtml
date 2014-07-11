@@ -1,0 +1,24 @@
+﻿@model DocuTAPUploading.Models.ExpirModel
+
+@{
+    ViewBag.Title = "Expire";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Expire</h2>
+@using (Html.BeginForm("ExpireSiteID", "Exipre", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <table>
+        <tr>
+            <td>Enter SiteID:</td>
+            <td>
+                <input id="txtSiteid" type="text" name="siteid" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" name="Submit" id="btnSubmit" value="Expire"/>
+            </td>
+        </tr>
+    </table> 
+}

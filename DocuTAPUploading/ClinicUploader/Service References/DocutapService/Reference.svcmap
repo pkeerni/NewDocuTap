@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="49b8c4e0-218e-485b-8617-04c4b18be8fb" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:65057/DocutapService/Docutap.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Docutap.wsdl" MetadataType="Wsdl" ID="3be8f9d6-6e3a-42d7-9884-0072eade0f0c" SourceId="1" SourceUrl="http://localhost:65057/DocutapService/Docutap.svc?wsdl" />
+    <MetadataFile FileName="Docutap.xsd" MetadataType="Schema" ID="d35ab628-adb1-41e7-8824-91bd80f98fe2" SourceId="1" SourceUrl="http://localhost:65057/DocutapService/Docutap.svc?xsd=xsd0" />
+    <MetadataFile FileName="Docutap1.xsd" MetadataType="Schema" ID="101570dc-534c-46f0-8a15-478dfa3890e4" SourceId="1" SourceUrl="http://localhost:65057/DocutapService/Docutap.svc?xsd=xsd1" />
+    <MetadataFile FileName="Docutap.disco" MetadataType="Disco" ID="d8898d52-f8ef-44c4-9923-a0290e1e144c" SourceId="1" SourceUrl="http://localhost:65057/DocutapService/Docutap.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

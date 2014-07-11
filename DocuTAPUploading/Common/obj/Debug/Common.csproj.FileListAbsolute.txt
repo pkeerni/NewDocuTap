@@ -1,0 +1,13 @@
+D:\Projects\DocuTap\Source\dataconfigurator2014\DocuTAPUploading\Common\bin\Debug\Common.dll
+D:\Projects\DocuTap\Source\dataconfigurator2014\DocuTAPUploading\Common\bin\Debug\Common.pdb
+D:\Projects\DocuTap\Source\dataconfigurator2014\DocuTAPUploading\Common\bin\Debug\DocumentFormat.OpenXml.dll
+D:\Projects\DocuTap\Source\dataconfigurator2014\DocuTAPUploading\Common\bin\Debug\EntityFramework.dll
+D:\Projects\DocuTap\Source\dataconfigurator2014\DocuTAPUploading\Common\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\DocuTap\Source\dataconfigurator2014\DocuTAPUploading\Common\bin\Debug\nunit.framework.dll
+D:\Projects\DocuTap\Source\dataconfigurator2014\DocuTAPUploading\Common\bin\Debug\EntityFramework.xml
+D:\Projects\DocuTap\Source\dataconfigurator2014\DocuTAPUploading\Common\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects\DocuTap\Source\dataconfigurator2014\DocuTAPUploading\Common\bin\Debug\nunit.framework.xml
+D:\Projects\DocuTap\Source\dataconfigurator2014\DocuTAPUploading\Common\obj\Debug\Common.dll
+D:\Projects\DocuTap\Source\dataconfigurator2014\DocuTAPUploading\Common\obj\Debug\Common.pdb
+D:\Projects\DocuTap\Source\dataconfigurator2014\DocuTAPUploading\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+D:\Projects\DocuTap\Source\dataconfigurator2014\DocuTAPUploading\Common\bin\Debug\Common.dll.config

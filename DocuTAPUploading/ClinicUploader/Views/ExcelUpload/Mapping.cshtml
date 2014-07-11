@@ -1,0 +1,34 @@
+﻿@model ClinicUploader.Models.Mappingmodel
+
+@{
+    ViewBag.Title = "Mapping";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm()) 
+{
+     <fieldset>
+        <legend>mapping Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.SiteID)
+                @Html.TextBoxFor(m => m.SiteID)
+                
+
+            </li>
+            <li>
+                @Html.LabelFor(m => m.DocutapEid)
+                @Html.TextBoxFor(m => m.DocutapEid)
+            @Html.ValidationMessageFor(m => m.DocutapEid)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.ClinicEid)
+                @Html.TextBoxFor(m => m.ClinicEid)
+            @Html.ValidationMessageFor(m => m.ClinicEid)
+            </li>
+        </ol>  
+         <label class="MessageInfo"  id="MessageInfo">@ViewBag.MessageInfo</label> 
+   @*      <label class="MessageInfo"  id="MessageInfo" style="color:red">@Html.Raw(ViewData["Message"])</label> *@
+        <input type="submit" value="Generate Site" />
+    </fieldset>
+}

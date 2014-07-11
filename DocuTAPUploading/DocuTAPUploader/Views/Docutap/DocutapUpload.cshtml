@@ -1,0 +1,34 @@
+﻿@model Common.Models.DocutapModel
+
+@{
+    ViewBag.Title = "DocutapUpload";
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
+    
+<script src="~/Scripts/jquery-1.7.1.js"></script>
+<script src="~/Scripts/ValidateUpload.js"></script>
+
+<h2>Docutap Upload</h2>  
+@using (Html.BeginForm("DocutapUpload", "Docutap", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <table>
+        <tr>
+            <td>SiteID:</td>
+            <td>    
+            @Html.DropDownListFor(model => model.siteid  , (IEnumerable<SelectListItem>) ViewBag.Sites , "--Select--", new {@id="ddlSite"})
+             </td>
+        </tr>
+        <tr>
+            <td>File:</td>
+            <td>
+                <input type="file" id="fileUpload" name="docutapfile"/>
+                <span class="field-validation-error" id="spanfile"></span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" name="Submit" id="btnSubmit" value="Upload"/>
+            </td>
+        </tr>
+    </table>
+}

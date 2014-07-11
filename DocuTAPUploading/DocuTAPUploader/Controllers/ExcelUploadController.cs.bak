@@ -1,0 +1,54 @@
+﻿using DocuTAPUploading.Models;
+using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
+using System.Web.Mvc;
+using System.Linq; 
+
+namespace DocuTAPUploading.Controllers
+{
+    public class ExcelUploadController : Controller
+    {
+
+        public ActionResult Index()
+        { 
+            return View();
+        }
+
+        public ActionResult Mapping()
+        {
+            ViewBag.MessageInfo = "Provide unique Site Id, Valid Doctup and Clinic Email Id";
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Mapping(Mappingmodel model)
+        {
+            var fileName = Server.MapPath((ConfigurationManager.AppSettings["MappingFile"]));
+            if (ModelState.IsValid)
+            {
+                if (FlatFileHelper.ValidateSiteId(model.SiteID))
+                {
+                    var mappedData = string.Format("{0}, {1},  {2}", model.SiteID, model.DocutapEid, model.ClinicEid);
+                    TextWriter tw = null;
+                    if (!System.IO.File.Exists(fileName))
+                    {
+                        tw = System.IO.File.CreateText(fileName);
+                    }
+                    else
+                    {
+
+                        tw = System.IO.File.AppendText(fileName);
+                    }
+                    tw.WriteLine(mappedData);
+                    tw.Close();
+                }
+                else
+                {
+                    ViewBag.MessageInfo = "Site ID exists. Please provide Unique Site Id.";
+                }
+            }
+            return View();
+        }
+    }
+}

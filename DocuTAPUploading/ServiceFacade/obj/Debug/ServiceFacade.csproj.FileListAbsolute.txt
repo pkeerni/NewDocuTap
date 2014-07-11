@@ -1,0 +1,9 @@
+D:\Projects\DocuTap\Source\dataconfigurator2014\DocuTAPUploading\ServiceFacade\bin\ServiceFacade.dll
+D:\Projects\DocuTap\Source\dataconfigurator2014\DocuTAPUploading\ServiceFacade\bin\ServiceFacade.pdb
+D:\Projects\DocuTap\Source\dataconfigurator2014\DocuTAPUploading\ServiceFacade\bin\Common.dll
+D:\Projects\DocuTap\Source\dataconfigurator2014\DocuTAPUploading\ServiceFacade\bin\nunit.framework.dll
+D:\Projects\DocuTap\Source\dataconfigurator2014\DocuTAPUploading\ServiceFacade\bin\Common.pdb
+D:\Projects\DocuTap\Source\dataconfigurator2014\DocuTAPUploading\ServiceFacade\bin\nunit.framework.xml
+D:\Projects\DocuTap\Source\dataconfigurator2014\DocuTAPUploading\ServiceFacade\obj\Debug\ServiceFacade.csprojResolveAssemblyReference.cache
+D:\Projects\DocuTap\Source\dataconfigurator2014\DocuTAPUploading\ServiceFacade\obj\Debug\ServiceFacade.dll
+D:\Projects\DocuTap\Source\dataconfigurator2014\DocuTAPUploading\ServiceFacade\obj\Debug\ServiceFacade.pdb

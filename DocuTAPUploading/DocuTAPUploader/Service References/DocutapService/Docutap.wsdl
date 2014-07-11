@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Docutap" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:65057/DocutapService/Docutap.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:65057/DocutapService/Docutap.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:65057/DocutapService/Docutap.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Common.DataModels" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IDocutap_UploadContent_InputMessage">
+    <wsdl:part name="parameters" element="tns:UploadContent" />
+  </wsdl:message>
+  <wsdl:message name="IDocutap_UploadContent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDocutap_GenerateUploadLink_InputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateUploadLink" />
+  </wsdl:message>
+  <wsdl:message name="IDocutap_GenerateUploadLink_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateUploadLinkResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDocutap_IsValidUpload_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsValidUpload" />
+  </wsdl:message>
+  <wsdl:message name="IDocutap_IsValidUpload_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsValidUploadResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDocutap_GenerateDL_InputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateDL" />
+  </wsdl:message>
+  <wsdl:message name="IDocutap_GenerateDL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateDLResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDocutap_GenerateMapping_InputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateMapping" />
+  </wsdl:message>
+  <wsdl:message name="IDocutap_GenerateMapping_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateMappingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDocutap_ExpireSiteID_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExpireSiteID" />
+  </wsdl:message>
+  <wsdl:message name="IDocutap_ExpireSiteID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExpireSiteIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDocutap_AllSiteIds_InputMessage">
+    <wsdl:part name="parameters" element="tns:AllSiteIds" />
+  </wsdl:message>
+  <wsdl:message name="IDocutap_AllSiteIds_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AllSiteIdsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IDocutap">
+    <wsdl:operation name="UploadContent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDocutap/UploadContent" message="tns:IDocutap_UploadContent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDocutap/UploadContentResponse" message="tns:IDocutap_UploadContent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateUploadLink">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDocutap/GenerateUploadLink" message="tns:IDocutap_GenerateUploadLink_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDocutap/GenerateUploadLinkResponse" message="tns:IDocutap_GenerateUploadLink_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsValidUpload">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDocutap/IsValidUpload" message="tns:IDocutap_IsValidUpload_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDocutap/IsValidUploadResponse" message="tns:IDocutap_IsValidUpload_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateDL">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDocutap/GenerateDL" message="tns:IDocutap_GenerateDL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDocutap/GenerateDLResponse" message="tns:IDocutap_GenerateDL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateMapping">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDocutap/GenerateMapping" message="tns:IDocutap_GenerateMapping_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDocutap/GenerateMappingResponse" message="tns:IDocutap_GenerateMapping_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExpireSiteID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDocutap/ExpireSiteID" message="tns:IDocutap_ExpireSiteID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDocutap/ExpireSiteIDResponse" message="tns:IDocutap_ExpireSiteID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AllSiteIds">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDocutap/AllSiteIds" message="tns:IDocutap_AllSiteIds_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDocutap/AllSiteIdsResponse" message="tns:IDocutap_AllSiteIds_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IDocutap" type="tns:IDocutap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UploadContent">
+      <soap:operation soapAction="http://tempuri.org/IDocutap/UploadContent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateUploadLink">
+      <soap:operation soapAction="http://tempuri.org/IDocutap/GenerateUploadLink" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsValidUpload">
+      <soap:operation soapAction="http://tempuri.org/IDocutap/IsValidUpload" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateDL">
+      <soap:operation soapAction="http://tempuri.org/IDocutap/GenerateDL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateMapping">
+      <soap:operation soapAction="http://tempuri.org/IDocutap/GenerateMapping" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExpireSiteID">
+      <soap:operation soapAction="http://tempuri.org/IDocutap/ExpireSiteID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AllSiteIds">
+      <soap:operation soapAction="http://tempuri.org/IDocutap/AllSiteIds" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Docutap">
+    <wsdl:port name="BasicHttpBinding_IDocutap" binding="tns:BasicHttpBinding_IDocutap">
+      <soap:address location="http://localhost:65057/DocutapService/Docutap.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
